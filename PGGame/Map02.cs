@@ -20,13 +20,10 @@ public class Map02 : BaseMap
                                                   """;
 
     public override string MapText { get; set; } = "This is a second map for testing.";
-
-  
-
+    
     public override void Interact()
     {
         Console.SetCursorPosition(0,MapHeight);
         Console.WriteLine("Boo");
     }
-
 }
