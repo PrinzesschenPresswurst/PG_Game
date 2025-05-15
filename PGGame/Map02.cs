@@ -5,13 +5,15 @@ public class Map02 : BaseMap
     public override char[,] MapArray { get; set; }
     public override int MapWidth { get; set; }
     public override int MapHeight { get; set; }
+    public override int playerStartX { get; set; } = 2;
+    public override int playerStartY { get; set; } = 5;
     public override string MapLook { get; set; }= """
                                                   ##################################################
                                                   #                                                #
                                                   #                                                #
                                                   #                                                #
                                                   #                                                #
-                                                  #                        1                       #
+                                                  D                        1                       #
                                                   #                                                #
                                                   #                                                #
                                                   ##################################################

@@ -6,6 +6,8 @@ public class BaseMap
     public virtual int MapWidth { get; set; }
     public virtual int MapHeight{ get; set; }
     public virtual string MapLook { get; set; } 
+    public virtual int playerStartX { get; set; } = 1;
+    public virtual int playerStartY { get; set; } = 1;
     
     public virtual string MapText { get; set; } = "Default base map text ";
     
@@ -13,11 +15,17 @@ public class BaseMap
     {
         
     }
+    
+    public virtual BaseMap MapSwitch()
+    {
+        return new Map01();
+    }
 
     protected BaseMap()
     { 
         BuildMapArray();
     }
+    
     private void BuildMapArray()
     {
         string[] lines = MapLook.Split('\n');
