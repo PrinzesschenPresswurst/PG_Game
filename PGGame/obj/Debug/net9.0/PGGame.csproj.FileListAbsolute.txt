@@ -26,3 +26,4 @@ C:\Repositories\PG_Game\PGGame\obj\Debug\net9.0\refint\PGGame.dll
 C:\Repositories\PG_Game\PGGame\obj\Debug\net9.0\PGGame.pdb
 C:\Repositories\PG_Game\PGGame\obj\Debug\net9.0\PGGame.genruntimeconfig.cache
 C:\Repositories\PG_Game\PGGame\obj\Debug\net9.0\ref\PGGame.dll
+C:\Repositories\PG_Game\PGGame\obj\Debug\net9.0\PGGame.sourcelink.json

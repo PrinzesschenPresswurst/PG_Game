@@ -9,7 +9,8 @@ Console.CursorVisible = false;
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 Player player = new Player();
-Map map = new Map();
+BaseMap map = new Map02(); ;
+
 
 WriteMap();
 player.WritePlayer(map);
@@ -45,7 +46,7 @@ void WriteMap()
 {
     Console.SetCursorPosition(0,0);
     Console.WriteLine(map.MapLook);
-    Console.WriteLine($"\n{map.mapText}");
+    Console.WriteLine($"\n{map.MapText}");
 }
 
 Console.ReadKey();

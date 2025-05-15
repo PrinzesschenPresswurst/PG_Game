@@ -7,7 +7,7 @@ public class Player
     public int PlayerPositionY { get; set; } = 5;
     
     
-    public void WritePlayer(Map map, int x = 0, int y = 0)
+    public void WritePlayer(BaseMap map, int x = 0, int y = 0)
     {
         
         if (map.MapArray[PlayerPositionY + y, PlayerPositionX + x] == '1')
