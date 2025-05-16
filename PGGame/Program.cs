@@ -4,11 +4,11 @@ Console.Title = "Player's Guide Game";
 Console.CursorVisible = false;
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-GameHandler gameHandler = new GameHandler();
-
+GameHandler.StartGame();
+    
 while (true)
 {
-    gameHandler.GetDirection();
+    GameHandler.GetDirection();
 }
 
 Console.ReadKey();

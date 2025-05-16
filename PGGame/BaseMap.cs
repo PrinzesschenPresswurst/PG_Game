@@ -2,7 +2,7 @@
 
 public class BaseMap
 {
-    public virtual char[,]? MapArray { get; set; }
+    public virtual char[,]? MapArray { get; set; } 
     public virtual int MapWidth { get; set; }
     public virtual int MapHeight{ get; set; }
     public virtual string MapLook { get; set; } 

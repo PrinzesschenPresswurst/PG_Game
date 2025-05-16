@@ -5,8 +5,8 @@ public class Map01 : BaseMap
     public override char[,] MapArray { get; set; }
     public override int MapWidth { get; set; }
     public override int MapHeight { get; set; }
-    public override int playerStartX { get; set; } = 47; 
-    public override int playerStartY { get; set; } = 5; 
+    public override int playerStartX { get; set; } = 25; 
+    public override int playerStartY { get; set; } = 8; 
     
     public override string MapLook { get; set; }= """
                                                   ##################################################
@@ -35,7 +35,6 @@ public class Map01 : BaseMap
     
     public override void Interact()
     {
-        Console.SetCursorPosition(0,MapHeight);
-        Console.WriteLine("Hello");
+        Exercise01.GetPlayerName();
     }
 }

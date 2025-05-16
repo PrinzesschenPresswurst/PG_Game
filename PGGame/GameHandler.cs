@@ -1,94 +1,95 @@
 ﻿namespace PGGame;
 
-public class GameHandler
+public static class GameHandler
 {
-    private int windowHeight = 25;
-    private int windowWidth = 50;
-    private Player player = new Player();
-    private BaseMap Map { get; set; } 
+    private static readonly int _windowHeight = 25;
+    private static readonly int _windowWidth = 50;
+    public static Player _player { get; set; }= new Player();
+    private static BaseMap Map { get; set; } = new Map01();
 
-    public GameHandler()
-    {
-        Map = new Map01();
-        StartGame();
-    }
     
-    private void StartGame()
+    public static void StartGame()
     {
-        Console.SetWindowSize(windowWidth, windowHeight);
+        Console.SetWindowSize(_windowWidth, _windowHeight);
         WriteMap();
         MovePlayer();
     }
 
 
-    private void SetPlayerPosition()
+    private static void SetPlayerPosition()
     {
-        player.PlayerPositionX = Map.playerStartX;
-        player.PlayerPositionY = Map.playerStartY;
+        _player.PlayerPositionX = Map.playerStartX;
+        _player.PlayerPositionY = Map.playerStartY;
         MovePlayer();
     }
     
-    public void GetDirection() 
+    public static void GetDirection() 
     {
         ConsoleKeyInfo input = Console.ReadKey();
         
-        if (input.Key == ConsoleKey.UpArrow && player.PlayerPositionY > 0)
+        if (input.Key == ConsoleKey.UpArrow && _player.PlayerPositionY > 0)
         {
-            HandleInput(Map, y: -1);
+            HandleInput( y: -1);
         }
-        else if (input.Key == ConsoleKey.DownArrow && player.PlayerPositionY + 1 < windowHeight)
+        else if (input.Key == ConsoleKey.DownArrow && _player.PlayerPositionY + 1 < _windowHeight)
         {
-            HandleInput(Map, y: +1);
+            HandleInput( y: +1);
         }
-        else if (input.Key == ConsoleKey.RightArrow && player.PlayerPositionX + 1 < windowWidth)
+        else if (input.Key == ConsoleKey.RightArrow && _player.PlayerPositionX + 1 < _windowWidth)
         {
-            HandleInput(Map, x: +1);
+            HandleInput( x: +1);
         }
-        else if (input.Key == ConsoleKey.LeftArrow && player.PlayerPositionX > 0)
+        else if (input.Key == ConsoleKey.LeftArrow && _player.PlayerPositionX > 0)
         {
-            HandleInput(Map, x: -1);
+            HandleInput( x: -1);
         }
     }
     
-    private void HandleInput(BaseMap map, int x = 0, int y = 0)
+    private static void HandleInput(int x = 0, int y = 0)
     {
-        if (map.MapArray[player.PlayerPositionY + y, player.PlayerPositionX + x] == '1')
+        if (Map.MapArray[_player.PlayerPositionY + y, _player.PlayerPositionX + x] == '1')
         {
-            map.Interact();
-            return;
-        }
-        
-        if (map.MapArray[player.PlayerPositionY + y, player.PlayerPositionX + x] == 'D')
-        {
-            Map = map.MapSwitch();
+            Map.Interact();
             WriteMap();
-            SetPlayerPosition();
             return;
         }
         
-        if (map.MapArray[ player.PlayerPositionY + y, player.PlayerPositionX + x] != ' ')
+        if (Map.MapArray[_player.PlayerPositionY + y, _player.PlayerPositionX + x] == 'D')
+        {
+            SwitchMaps();
+            WriteMap();
+            return;
+        }
+        
+        if (Map.MapArray[ _player.PlayerPositionY + y, _player.PlayerPositionX + x] != ' ')
             return;
         
         MovePlayer(x, y);
     }
 
-    private void MovePlayer(int x = 0, int y=0)
+    private static void  SwitchMaps()
     {
-        Console.SetCursorPosition(player.PlayerPositionX,player.PlayerPositionY);
+        Map = Map.MapSwitch();
+    }
+    
+    private static void MovePlayer(int x = 0, int y=0)
+    {
+        Console.SetCursorPosition(_player.PlayerPositionX,_player.PlayerPositionY);
         Console.Write(" ");
         
-        player.PlayerPositionY += y;
-        player.PlayerPositionX += x;
+        _player.PlayerPositionY += y;
+        _player.PlayerPositionX += x;
     
-        Console.SetCursorPosition(player.PlayerPositionX,player.PlayerPositionY );
-        Console.Write(player.PlayerLook); 
+        Console.SetCursorPosition(_player.PlayerPositionX,_player.PlayerPositionY );
+        Console.Write(_player.PlayerLook); 
     }
 
-    private void WriteMap()
+    private static void WriteMap()
     {
         Console.Clear();
         Console.SetCursorPosition(0,0);
         Console.WriteLine(Map.MapLook);
         Console.WriteLine($"\n{Map.MapText}");
+        SetPlayerPosition();
     }
 }
