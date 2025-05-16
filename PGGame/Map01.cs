@@ -30,11 +30,15 @@ public class Map01 : BaseMap
 
     public override BaseMap MapSwitch()
     {
-        return new Map02();
+        playerStartX = Player.Instance.PlayerPositionX;
+        playerStartY = Player.Instance.PlayerPositionY;
+        return GameHandler.Map02;
     }
     
     public override void Interact()
     {
         Exercise01.GetPlayerName();
+        playerStartX = Player.Instance.PlayerPositionX;
+        playerStartY = Player.Instance.PlayerPositionY;
     }
 }

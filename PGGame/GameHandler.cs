@@ -4,8 +4,12 @@ public static class GameHandler
 {
     private static readonly int _windowHeight = 25;
     private static readonly int _windowWidth = 50;
-    public static Player _player { get; set; }= new Player();
-    private static BaseMap Map { get; set; } = new Map01();
+    
+    public static BaseMap Map01 { get; set; } = new Map01();
+    public static BaseMap Map02 { get; set; } = new Map02();
+    private static BaseMap Map { get; set; } = Map01;
+    
+    private static Player Player = Player.Instance;
 
     
     public static void StartGame()
@@ -18,8 +22,8 @@ public static class GameHandler
 
     private static void SetPlayerPosition()
     {
-        _player.PlayerPositionX = Map.playerStartX;
-        _player.PlayerPositionY = Map.playerStartY;
+        Player.PlayerPositionX = Map.playerStartX;
+        Player.PlayerPositionY = Map.playerStartY;
         MovePlayer();
     }
     
@@ -27,19 +31,19 @@ public static class GameHandler
     {
         ConsoleKeyInfo input = Console.ReadKey();
         
-        if (input.Key == ConsoleKey.UpArrow && _player.PlayerPositionY > 0)
+        if (input.Key == ConsoleKey.UpArrow && Player.PlayerPositionY > 0)
         {
             HandleInput( y: -1);
         }
-        else if (input.Key == ConsoleKey.DownArrow && _player.PlayerPositionY + 1 < _windowHeight)
+        else if (input.Key == ConsoleKey.DownArrow && Player.PlayerPositionY + 1 < _windowHeight)
         {
             HandleInput( y: +1);
         }
-        else if (input.Key == ConsoleKey.RightArrow && _player.PlayerPositionX + 1 < _windowWidth)
+        else if (input.Key == ConsoleKey.RightArrow && Player.PlayerPositionX + 1 < _windowWidth)
         {
             HandleInput( x: +1);
         }
-        else if (input.Key == ConsoleKey.LeftArrow && _player.PlayerPositionX > 0)
+        else if (input.Key == ConsoleKey.LeftArrow && Player.PlayerPositionX > 0)
         {
             HandleInput( x: -1);
         }
@@ -47,21 +51,21 @@ public static class GameHandler
     
     private static void HandleInput(int x = 0, int y = 0)
     {
-        if (Map.MapArray[_player.PlayerPositionY + y, _player.PlayerPositionX + x] == '1')
+        if (Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x] == '1')
         {
             Map.Interact();
             WriteMap();
             return;
         }
         
-        if (Map.MapArray[_player.PlayerPositionY + y, _player.PlayerPositionX + x] == 'D')
+        if (Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x] == 'D')
         {
             SwitchMaps();
             WriteMap();
             return;
         }
         
-        if (Map.MapArray[ _player.PlayerPositionY + y, _player.PlayerPositionX + x] != ' ')
+        if (Map.MapArray[ Player.PlayerPositionY + y, Player.PlayerPositionX + x] != ' ')
             return;
         
         MovePlayer(x, y);
@@ -74,14 +78,14 @@ public static class GameHandler
     
     private static void MovePlayer(int x = 0, int y=0)
     {
-        Console.SetCursorPosition(_player.PlayerPositionX,_player.PlayerPositionY);
+        Console.SetCursorPosition(Player.PlayerPositionX,Player.PlayerPositionY);
         Console.Write(" ");
         
-        _player.PlayerPositionY += y;
-        _player.PlayerPositionX += x;
+        Player.PlayerPositionY += y;
+        Player.PlayerPositionX += x;
     
-        Console.SetCursorPosition(_player.PlayerPositionX,_player.PlayerPositionY );
-        Console.Write(_player.PlayerLook); 
+        Console.SetCursorPosition(Player.PlayerPositionX,Player.PlayerPositionY );
+        Console.Write(Player.PlayerLook); 
     }
 
     private static void WriteMap()

@@ -28,4 +28,11 @@ public class Map02 : BaseMap
         Console.SetCursorPosition(0,MapHeight);
         Console.WriteLine("Boo");
     }
+    
+    public override BaseMap MapSwitch()
+    {
+        playerStartX = Player.Instance.PlayerPositionX;
+        playerStartY = Player.Instance.PlayerPositionY;
+        return GameHandler.Map01;
+    }
 }

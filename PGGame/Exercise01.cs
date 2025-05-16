@@ -35,7 +35,7 @@ public class Exercise01
         Console.ReadKey();
         Console.CursorVisible = false;
 
-        GameHandler._player.PlayerName = name;
+        Player.Instance.PlayerName = name;
         nameWasSet = true;
     }
 
@@ -45,7 +45,7 @@ public class Exercise01
         Console.WriteLine();
         Console.WriteLine("\u250c( ಠ\u25e1ಠ)\u2518");
         Console.WriteLine();
-        Console.WriteLine($"You already told me you are {GameHandler._player.PlayerName}. \nGonna live with that now.");
+        Console.WriteLine($"You already told me you are {Player.Instance.PlayerName}. \nGonna live with that now.");
         Console.ReadKey();
     }
 }
