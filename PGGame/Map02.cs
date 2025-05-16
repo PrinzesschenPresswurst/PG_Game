@@ -6,18 +6,24 @@ public class Map02 : BaseMap
     public override int MapWidth { get; set; }
     public override int MapHeight { get; set; }
     public override int playerStartX { get; set; } = 2;
-    public override int playerStartY { get; set; } = 5;
+    public override int playerStartY { get; set; } = 7;
     public override string MapLook { get; set; }= """
                                                   ##################################################
                                                   #                                                #
+                                                  #           🌳                          🌳       #
+                                                  #       ___          ___           ___           #
+                                                  #      |   |        |   |         |   |          #
+                                                  #      |_1_|        |_2_|         |_3_|          #
+                                                  #                                                #
+                                                  D         ___                     ___            #
+                                                  #        | O |                   | O |           #
+                                                  #        |___|                   |___|           #
                                                   #                                                #
                                                   #                                                #
+                                                  #           🌳                🌳                 #
+                                                  #       🌳      🌳                               #
+                                                  #         🌳   🌳                      🌳        #
                                                   #                                                #
-                                                  D                        1                       #
-                                                  #                                                #
-                                                  #                                                #
-                                                  ##################################################
-                                                  ##################################################
                                                   ##################################################
                                                   """;
 

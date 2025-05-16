@@ -1,6 +1,6 @@
 ﻿namespace PGGame;
 
-public class Exercise01
+public static class Exercise01
 {
     private static bool nameWasSet = false;
     public static void GetPlayerName()

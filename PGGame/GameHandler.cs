@@ -71,7 +71,7 @@ public static class GameHandler
         MovePlayer(x, y);
     }
 
-    private static void  SwitchMaps()
+    private static void SwitchMaps()
     {
         Map = Map.MapSwitch();
     }

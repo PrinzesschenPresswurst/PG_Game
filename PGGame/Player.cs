@@ -2,12 +2,12 @@
 
 public  class Player
 {
-    public string PlayerLook { get; private set; }
-    public int PlayerPositionX { get; set; }
-    public int PlayerPositionY { get; set; }
-    public string PlayerName { get; set; }
-    
-    private static Player _instance = new Player();
+    public string PlayerLook { get; private set; } = "\u263B";
+    public int PlayerPositionX { get; set; } = 0;
+    public int PlayerPositionY { get; set; } = 0;
+    public string PlayerName { get; set; } = "default";
+
+    private static Player _instance = null;
     
     public static Player Instance
     {
@@ -23,10 +23,7 @@ public  class Player
     
     private Player()
     {
-        PlayerLook = "\u263B";
-        PlayerPositionX = 0;
-        PlayerPositionY = 0;
-        PlayerName = " ";
+        
     }
     
 }
