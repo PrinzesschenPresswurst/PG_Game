@@ -51,21 +51,22 @@ public static class GameHandler
     
     private static void HandleInput(int x = 0, int y = 0)
     {
-        if (Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x] == '1')
+        char targetCharacter = Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x];
+        if (targetCharacter == '1' ||targetCharacter == '2')
         {
-            Map.Interact();
+            Map.Interact(targetCharacter);
             WriteMap();
             return;
         }
         
-        if (Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x] == 'D')
+        if (targetCharacter == 'D')
         {
             SwitchMaps();
             WriteMap();
             return;
         }
         
-        if (Map.MapArray[ Player.PlayerPositionY + y, Player.PlayerPositionX + x] != ' ')
+        if (targetCharacter != ' ')
             return;
         
         MovePlayer(x, y);

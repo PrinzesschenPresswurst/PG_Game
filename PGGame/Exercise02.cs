@@ -33,9 +33,7 @@ public static class Exercise02
             {
                 break;
             }
-            
         }
-        //Console.ReadKey();
     }
 
     private static void DisplayWares()

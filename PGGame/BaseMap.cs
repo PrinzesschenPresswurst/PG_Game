@@ -10,8 +10,9 @@ public class BaseMap
     public virtual int playerStartY { get; set; } = 1;
     
     public virtual string MapText { get; set; } = "Default base map text ";
+    public virtual string MapTitle { get; set; } = "Default Title ";
     
-    public virtual void Interact()
+    public virtual void Interact(char selection = '1')
     {
         
     }

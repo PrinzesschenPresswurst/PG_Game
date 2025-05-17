@@ -5,6 +5,7 @@ public static class Exercise01
     private static bool nameWasSet = false;
     public static void GetPlayerName()
     {
+        Console.Title = "Some Dude";
         if (nameWasSet == true)
         {
             DisplaySetName();
