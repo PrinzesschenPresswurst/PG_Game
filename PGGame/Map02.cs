@@ -27,12 +27,13 @@ public class Map02 : BaseMap
                                                   ##################################################
                                                   """;
 
-    public override string MapText { get; set; } = "This is a second map for testing.";
+    public override string MapText { get; set; } = "You enter a city. There are lots of shops here.";
     
     public override void Interact()
     {
-        Console.SetCursorPosition(0,MapHeight);
-        Console.WriteLine("Boo");
+        Exercise02.DisplayShop();
+        playerStartX = Player.Instance.PlayerPositionX;
+        playerStartY = Player.Instance.PlayerPositionY;
     }
     
     public override BaseMap MapSwitch()

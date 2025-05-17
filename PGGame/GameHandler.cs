@@ -2,7 +2,7 @@
 
 public static class GameHandler
 {
-    private static readonly int _windowHeight = 25;
+    private static readonly int _windowHeight = 30;
     private static readonly int _windowWidth = 50;
     
     public static BaseMap Map01 { get; set; } = new Map01();
