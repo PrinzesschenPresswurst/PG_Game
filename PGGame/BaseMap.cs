@@ -8,11 +8,17 @@ public class BaseMap
     public virtual string MapLook { get; set; } 
     public virtual int playerStartX { get; set; } = 1;
     public virtual int playerStartY { get; set; } = 1;
+
+    public virtual char PickupSign { get; set; }
     
     public virtual string MapText { get; set; } = "Default base map text ";
     public virtual string MapTitle { get; set; } = "Default Title ";
     
     public virtual void Interact(char selection = '1')
+    {
+        
+    } 
+    public virtual void Pickup()
     {
         
     }
@@ -57,7 +63,11 @@ public class BaseMap
         {
             for (int j = 0; j < MapArray.GetLength(1); j++)
             {
+                if (MapArray[i, j] == 'D')
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                
                 Console.Write(MapArray[i,j]);
+                Console.ForegroundColor = ConsoleColor.White;
             }
             Console.WriteLine();
         }

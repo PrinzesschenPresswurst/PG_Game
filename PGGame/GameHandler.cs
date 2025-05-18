@@ -52,7 +52,7 @@ public static class GameHandler
     private static void HandleInput(int x = 0, int y = 0)
     {
         char targetCharacter = Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x];
-        if (targetCharacter == '1' || targetCharacter == '2' || targetCharacter == '3')
+        if (targetCharacter is '1' or '2' or '3' or '4')
         {
             Map.Interact(targetCharacter);
             WriteMap();
@@ -66,10 +66,10 @@ public static class GameHandler
             return;
         }
 
-        if (targetCharacter == 'o')
+        if (targetCharacter == Map.PickupSign)
         {
             Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x] = ' ';
-            Exercise03.EggsCollected++;
+            Map.Pickup();
         }
         
         else if (targetCharacter != ' ')
@@ -98,6 +98,7 @@ public static class GameHandler
     private static void WriteMap()
     {
         Console.Clear();
+        Console.Title = Map.MapTitle;
         Console.SetCursorPosition(0,0);
         Map.WriteMap();
         Console.WriteLine($"\n{Map.MapText}");

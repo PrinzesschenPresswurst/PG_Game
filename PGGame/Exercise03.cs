@@ -3,6 +3,27 @@
 public class Exercise03
 {
     public static int EggsCollected { get; set; } = 0;
+
+    public static void DominionOfKings()
+    {
+        Console.Clear();
+        Console.Title = "Dominion of Kings";
+        Console.WriteLine();
+        Console.WriteLine("( ಠ \u035cʖರ\u0cc3)");
+        Console.WriteLine();
+        Console.WriteLine("Hi. I will scvore you on the King's Scale!");
+        Console.WriteLine("Give me the amount of provinces you have!");
+        int provinces = GetUserInput();
+        Console.WriteLine("Give me the amount of duchies you have!");
+        int duchies = GetUserInput();
+        Console.WriteLine("And now the amount of estates you have!");
+        int estates = GetUserInput();
+        int sum = (estates * 1) + (duchies * 3) + (provinces * 6);
+        Console.ForegroundColor = ConsoleColor.Green; 
+        Console.WriteLine($"\nYour score is {sum}");
+        Console.ForegroundColor = ConsoleColor.White; 
+        Console.ReadKey();
+    }
     
     public static void TriangleFarmer()
     {
@@ -11,7 +32,7 @@ public class Exercise03
         Console.WriteLine();
         Console.WriteLine("ᶘ ᵒᴥᵒᶅ");
         Console.WriteLine();
-        Console.WriteLine("I will calculate your triangle!");
+        Console.WriteLine("Hi. I will calculate your triangle!");
         Console.WriteLine("Give me the base measurement!");
         int width = GetUserInput();
         Console.WriteLine("Give me the height measurement!");
@@ -24,23 +45,40 @@ public class Exercise03
 
     public static void DuckBear()
     {
-        do
+        Console.Clear();
+        Console.Title = "Four Sisters and the Duckbear";
+        Console.WriteLine();
+        Console.WriteLine("( \u0361\u00b0\u2765 \u0361\u00b0)( \u0361\u00b0\u2765 \u0361\u00b0)( \u0361\u00b0\u2765 \u0361\u00b0)( \u0361\u00b0\u2765 \u0361\u00b0)");
+        Console.WriteLine();
+
+        if (EggsCollected <= 0)
         {
-            Console.Clear();
-            Console.Title = "Four Sisters and the Duckbear";
-            Console.WriteLine();
-            Console.WriteLine("( \u0361\u00b0\u2765 \u0361\u00b0)( \u0361\u00b0\u2765 \u0361\u00b0)( \u0361\u00b0\u2765 \u0361\u00b0)( \u0361\u00b0\u2765 \u0361\u00b0)");
-            Console.WriteLine();
-            Console.WriteLine("Help us solve the dispute. How many eggs do we have?");
-            Console.WriteLine($"You have collected: {EggsCollected} eggs.");
-            int eggAmount = GetUserInput();
-            int eggPerSister = eggAmount / 4;
-            int eggsForDuckbear = eggAmount % 4;
-            Console.WriteLine($"With {eggAmount} eggs - each sister gets {eggPerSister} and the duckbear gets the rest: {eggsForDuckbear}.");
-            if (eggsForDuckbear > eggPerSister)
-                Console.WriteLine("Lucky Duckbear! ᶘ ᵒᴥᵒᶅ");
+            Console.WriteLine("You have no eggs. Com back when you have some.");
             Console.ReadKey();
-        } while (PlayAgain() == true );
+            return;
+        }
+        
+        Console.SetCursorPosition(0,5);
+        Console.WriteLine($"You have collected: {EggsCollected} eggs. Let's split");
+        Console.ReadKey();
+        DisplayDuckbearResult(EggsCollected);
+        Console.ReadKey();
+        
+        while (PlayAgain() == true)
+        {
+            Console.WriteLine("Then give any number of eggs.");
+            int eggAmount = GetUserInput();
+            DisplayDuckbearResult(eggAmount);
+        }
+    }
+
+    private static void DisplayDuckbearResult(int number)
+    {
+        int eggPerSister = number / 4;
+        int eggsForDuckbear = number % 4;
+        Console.WriteLine($"With {number} eggs - each sister gets {eggPerSister} and the duckbear gets the rest: {eggsForDuckbear}.");
+        if (eggsForDuckbear > eggPerSister)
+            Console.WriteLine("Lucky Duckbear! ᶘ ᵒᴥᵒᶅ");
     }
 
     private static int GetUserInput()
@@ -59,6 +97,7 @@ public class Exercise03
 
     private static bool PlayAgain()
     {
+        Console.WriteLine("Do you want to try again with any number?");
         Console.WriteLine("Do again [a] or exit [e]?");
         while (true)
         {

@@ -7,22 +7,24 @@ public class Map02 : BaseMap
     public override int MapHeight { get; set; }
     public override int playerStartX { get; set; } = 2;
     public override int playerStartY { get; set; } = 7;
+    public override char PickupSign { get; set; } = 'o';
+
     public override string MapLook { get; set; }= """
                                                   ##################################################
-                                                  #   o                                            #
+                                                  #   o                                       o    #
                                                   #           🌳     ______              🌳        #
                                                   #       ___       | ▲▲▲▲ |        ___            #
                                                   #      |   |      | ▲▲▲▲ |       | 🐔|           #
                                                   #      |_1_|          2          |_3_|           #
                                                   #                                                #
                                                   D         ___                     ___            #
-                                                  #        | O |                   | O |           #
-                                                  #        |___|                   |___|           #
+                                                  #        |___|                  o|   |           #
+                                                  #        |___|o                  |_4_|           #
                                                   #                                                #
                                                   #                                                #
                                                   #           🌳                🌳                 #
-                                                  #       🌳      🌳                               #
-                                                  #         🌳   🌳                      🌳        #
+                                                  #       🌳   o  🌳             o                 #
+                                                  #         🌳   🌳                      🌳o       #
                                                   #                                                #
                                                   ##################################################
                                                   """;
@@ -47,8 +49,19 @@ public class Map02 : BaseMap
             Exercise03.DuckBear();
             SetPlayerStart();
         }
+        else if (selection == '4')
+        {
+            Exercise03.DominionOfKings();
+            SetPlayerStart();
+        }
+        
     }
-    
+
+    public override void Pickup()
+    {
+        Exercise03.EggsCollected++;
+    }
+
     public override BaseMap MapSwitch()
     {
         playerStartX = Player.Instance.PlayerPositionX;

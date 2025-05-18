@@ -15,6 +15,7 @@ public static class Exercise02
         Console.WriteLine();
         Console.WriteLine("See my wares! I have lots of variables!");
         Console.WriteLine($"{"[S] - shuffle", -10}{"[E] - exit", -10}");
+        Console.WriteLine();
 
         while (true)
         {
@@ -38,7 +39,7 @@ public static class Exercise02
 
     private static void DisplayWares()
     {
-        Console.SetCursorPosition(0,5);
+        Console.SetCursorPosition(0,6);
         Console.WriteLine($"Floating numbers:");
         Console.WriteLine($"|{"Float",-10}|{(shuffleOn? sbyte.MinValue : sbyte.MaxValue),-30}|");
         Console.WriteLine($"|{"Double",-10}|{(shuffleOn? double.MinValue : double.MaxValue),-30}|");
