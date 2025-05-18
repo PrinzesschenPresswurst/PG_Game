@@ -2,8 +2,8 @@
 
 public static class GameHandler
 {
-    private static readonly int _windowHeight = 30;
-    private static readonly int _windowWidth = 50;
+    private static readonly int _windowHeight = 50;
+    private static readonly int _windowWidth = 100;
     
     public static BaseMap Map01 { get; set; } = new Map01();
     public static BaseMap Map02 { get; set; } = new Map02();
@@ -52,7 +52,7 @@ public static class GameHandler
     private static void HandleInput(int x = 0, int y = 0)
     {
         char targetCharacter = Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x];
-        if (targetCharacter == '1' ||targetCharacter == '2')
+        if (targetCharacter == '1' || targetCharacter == '2' || targetCharacter == '3')
         {
             Map.Interact(targetCharacter);
             WriteMap();
@@ -65,8 +65,14 @@ public static class GameHandler
             WriteMap();
             return;
         }
+
+        if (targetCharacter == 'o')
+        {
+            Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x] = ' ';
+            Exercise03.EggsCollected++;
+        }
         
-        if (targetCharacter != ' ')
+        else if (targetCharacter != ' ')
             return;
         
         MovePlayer(x, y);
@@ -93,7 +99,7 @@ public static class GameHandler
     {
         Console.Clear();
         Console.SetCursorPosition(0,0);
-        Console.WriteLine(Map.MapLook);
+        Map.WriteMap();
         Console.WriteLine($"\n{Map.MapText}");
         SetPlayerPosition();
     }

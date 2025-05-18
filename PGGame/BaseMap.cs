@@ -22,6 +22,12 @@ public class BaseMap
         return new Map01();
     }
 
+    public virtual void SetPlayerStart()
+    {
+        playerStartX = Player.Instance.PlayerPositionX;
+        playerStartY = Player.Instance.PlayerPositionY;
+    }
+
     protected BaseMap()
     { 
         BuildMapArray();
@@ -42,6 +48,18 @@ public class BaseMap
             {
                 MapArray[i, j] = letters [j];
             }
+        }
+    }
+
+    public void WriteMap()
+    {
+        for (int i = 0; i < MapArray.GetLength(0); i++)
+        {
+            for (int j = 0; j < MapArray.GetLength(1); j++)
+            {
+                Console.Write(MapArray[i,j]);
+            }
+            Console.WriteLine();
         }
     }
 }

@@ -9,10 +9,10 @@ public class Map02 : BaseMap
     public override int playerStartY { get; set; } = 7;
     public override string MapLook { get; set; }= """
                                                   ##################################################
-                                                  #                                                #
-                                                  #           🌳     ______              🌳       #
+                                                  #   o                                            #
+                                                  #           🌳     ______              🌳        #
                                                   #       ___       | ▲▲▲▲ |        ___            #
-                                                  #      |   |      | ▲▲▲▲ |       |   |           #
+                                                  #      |   |      | ▲▲▲▲ |       | 🐔|           #
                                                   #      |_1_|          2          |_3_|           #
                                                   #                                                #
                                                   D         ___                     ___            #
@@ -35,14 +35,17 @@ public class Map02 : BaseMap
         if (selection == '1')
         {
             Exercise02.DisplayShop();
-            playerStartX = Player.Instance.PlayerPositionX;
-            playerStartY = Player.Instance.PlayerPositionY; 
+            SetPlayerStart();
         }
         else if (selection == '2')
         {
             Exercise03.TriangleFarmer();
-            playerStartX = Player.Instance.PlayerPositionX;
-            playerStartY = Player.Instance.PlayerPositionY;
+            SetPlayerStart();
+        }
+        else if (selection == '3')
+        {
+            Exercise03.DuckBear();
+            SetPlayerStart();
         }
     }
     
