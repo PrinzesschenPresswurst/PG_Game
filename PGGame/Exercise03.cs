@@ -11,7 +11,7 @@ public class Exercise03
         Console.WriteLine();
         Console.WriteLine("( ಠ \u035cʖರ\u0cc3)");
         Console.WriteLine();
-        Console.WriteLine("Hi. I will scvore you on the King's Scale!");
+        Console.WriteLine("Hi. I will score you on the King's Scale!");
         Console.WriteLine("Give me the amount of provinces you have!");
         int provinces = GetUserInput();
         Console.WriteLine("Give me the amount of duchies you have!");
@@ -48,7 +48,8 @@ public class Exercise03
         Console.Clear();
         Console.Title = "Four Sisters and the Duckbear";
         Console.WriteLine();
-        Console.WriteLine("( \u0361\u00b0\u2765 \u0361\u00b0)( \u0361\u00b0\u2765 \u0361\u00b0)( \u0361\u00b0\u2765 \u0361\u00b0)( \u0361\u00b0\u2765 \u0361\u00b0)");
+        Console.WriteLine("( \u0361\u00b0( \u0361\u00b0 \u035cʖ( \u0361\u00b0 \u035cʖ \u0361\u00b0)ʖ \u0361\u00b0)");
+        Console.WriteLine("We are four sisters and want chocolate eggs.");
         Console.WriteLine();
 
         if (EggsCollected <= 0)
@@ -59,7 +60,7 @@ public class Exercise03
         }
         
         Console.SetCursorPosition(0,5);
-        Console.WriteLine($"You have collected: {EggsCollected} eggs. Let's split");
+        Console.WriteLine($"You have collected: {EggsCollected} eggs. Let's split.");
         Console.ReadKey();
         DisplayDuckbearResult(EggsCollected);
         Console.ReadKey();
@@ -76,9 +77,9 @@ public class Exercise03
     {
         int eggPerSister = number / 4;
         int eggsForDuckbear = number % 4;
-        Console.WriteLine($"With {number} eggs - each sister gets {eggPerSister} and the duckbear gets the rest: {eggsForDuckbear}.");
+        Console.WriteLine($"With {number} eggs - each sister gets {eggPerSister} and their pet, the duckbear, gets the rest: {eggsForDuckbear}.");
         if (eggsForDuckbear > eggPerSister)
-            Console.WriteLine("Lucky Duckbear! ᶘ ᵒᴥᵒᶅ");
+            Console.WriteLine("Lucky Duckbear got most! ʕ·\u0361ᴥ·ʔ");
     }
 
     private static int GetUserInput()

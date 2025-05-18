@@ -26,7 +26,7 @@ public class Map01 : BaseMap
                                                   ##################################################
                                                   """;
 
-    public override string MapText { get; set; } = "You wake up on a beach. There is is a person.";
+    public override string MapText { get; set; } = "You wake up on a beach. There is a person.";
     public override string MapTitle { get; set; } = "Beach.";
 
     public override BaseMap MapSwitch()
