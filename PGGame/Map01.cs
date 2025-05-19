@@ -14,7 +14,7 @@ public class Map01 : BaseMap
                                                   #                                                #
                                                   #                                                #
                                                   #                                                #
-                                                  #                        1       2               D
+                                                  #                        1                       D
                                                   #                                                #
                                                   #                                                #
                                                   #                                                #
@@ -29,7 +29,7 @@ public class Map01 : BaseMap
     public override string MapText { get; set; } = "You wake up on a beach. There is a person.";
     public override string MapTitle { get; set; } = "Beach.";
 
-    public override BaseMap MapSwitch()
+    public override BaseMap MapSwitch(char exit)
     {
         playerStartX = Player.Instance.PlayerPositionX;
         playerStartY = Player.Instance.PlayerPositionY;
@@ -44,13 +44,5 @@ public class Map01 : BaseMap
             playerStartX = Player.Instance.PlayerPositionX;
             playerStartY = Player.Instance.PlayerPositionY;
         }
-        
-        if (selection == '2')
-        {
-            Exercise04 defenseOfConsolas = new Exercise04();
-            playerStartX = Player.Instance.PlayerPositionX;
-            playerStartY = Player.Instance.PlayerPositionY;
-        }
-        
     }
 }

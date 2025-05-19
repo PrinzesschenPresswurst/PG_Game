@@ -23,7 +23,7 @@ public class BaseMap
         
     }
     
-    public virtual BaseMap MapSwitch()
+    public virtual BaseMap MapSwitch(char exit)
     {
         return new Map01();
     }
@@ -63,11 +63,15 @@ public class BaseMap
         {
             for (int j = 0; j < MapArray.GetLength(1); j++)
             {
-                if (MapArray[i, j] == 'D')
+                if (MapArray[i, j] == 'D' || MapArray[i, j] == 'E')
+                { 
                     Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write('E'); 
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                    
+                else Console.Write(MapArray[i,j]);
                 
-                Console.Write(MapArray[i,j]);
-                Console.ForegroundColor = ConsoleColor.White;
             }
             Console.WriteLine();
         }

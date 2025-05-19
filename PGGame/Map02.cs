@@ -17,7 +17,7 @@ public class Map02 : BaseMap
                                                   #      |   |      | ▲▲▲▲ |       | 🐔|           #
                                                   #      |_1_|          2          |_3_|           #
                                                   #                                                #
-                                                  D         ___                     ___            #
+                                                  D         ___                     ___            E
                                                   #        |___|                  o|   |           #
                                                   #        |___|o                  |_4_|           #
                                                   #                                                #
@@ -62,10 +62,20 @@ public class Map02 : BaseMap
         Exercise03.EggsCollected++;
     }
 
-    public override BaseMap MapSwitch()
+    public override BaseMap MapSwitch(char exit)
     {
-        playerStartX = Player.Instance.PlayerPositionX;
-        playerStartY = Player.Instance.PlayerPositionY;
-        return GameHandler.Map01;
+        if (exit == 'D')
+        {
+            SetPlayerStart();
+            return GameHandler.Map01;
+        }
+        else if (exit == 'E')
+        {
+            SetPlayerStart();
+            return GameHandler.Map03;
+        }
+        else return GameHandler.Map02;
+        
+        
     }
 }

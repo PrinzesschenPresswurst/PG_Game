@@ -7,6 +7,7 @@ public static class GameHandler
     
     public static BaseMap Map01 { get; set; } = new Map01();
     public static BaseMap Map02 { get; set; } = new Map02();
+    public static BaseMap Map03 { get; set; } = new Map03();
     private static BaseMap Map { get; set; } = Map01;
     
     private static Player Player = Player.Instance;
@@ -59,9 +60,9 @@ public static class GameHandler
             return;
         }
         
-        if (targetCharacter == 'D')
+        if (targetCharacter == 'D' || targetCharacter == 'E')
         {
-            SwitchMaps();
+            Map = Map.MapSwitch(targetCharacter);
             WriteMap();
             return;
         }
@@ -77,11 +78,7 @@ public static class GameHandler
         
         MovePlayer(x, y);
     }
-
-    private static void SwitchMaps()
-    {
-        Map = Map.MapSwitch();
-    }
+    
     
     private static void MovePlayer(int x = 0, int y=0)
     {
