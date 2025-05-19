@@ -14,7 +14,7 @@ public class Map01 : BaseMap
                                                   #                                                #
                                                   #                                                #
                                                   #                                                #
-                                                  #                        1                       D
+                                                  #                        1       2               D
                                                   #                                                #
                                                   #                                                #
                                                   #                                                #
@@ -38,8 +38,19 @@ public class Map01 : BaseMap
     
     public override void Interact(char selection = '1')
     {
-        Exercise01.GetPlayerName();
-        playerStartX = Player.Instance.PlayerPositionX;
-        playerStartY = Player.Instance.PlayerPositionY;
+        if (selection == '1')
+        {
+            Exercise01.GetPlayerName();
+            playerStartX = Player.Instance.PlayerPositionX;
+            playerStartY = Player.Instance.PlayerPositionY;
+        }
+        
+        if (selection == '2')
+        {
+            Exercise04 defenseOfConsolas = new Exercise04();
+            playerStartX = Player.Instance.PlayerPositionX;
+            playerStartY = Player.Instance.PlayerPositionY;
+        }
+        
     }
 }
