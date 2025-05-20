@@ -13,10 +13,16 @@ public class Exercise06
     {
         Console.Clear();
         CreateAllItems();
-        DisplayMenu();
-        Console.WriteLine("Which item do you want to see the price of?");
-        int desiredItem = GetNumber();
-        DisplayPrice(desiredItem);
+
+        do
+        {
+            DisplayMenu();
+            Console.WriteLine("Which item do you want to see the price of?");
+            int desiredItem = GetNumber();
+            DisplayPrice(desiredItem);
+            
+        } while (PlayAgain());
+        
         Console.ReadLine();
     }
 
@@ -69,6 +75,23 @@ public class Exercise06
             5 => _inventory[5],
         };
         Console.WriteLine($"{item.Name} costs {(discountActive? (item.Price/2) : item.Price)}.");
+    }
+    
+    private bool PlayAgain()
+    {
+        Console.WriteLine("Do you want to see another price? [y] yes - [n] no");
+        while (true)
+        {
+            string input = Console.ReadLine();
+            if (input != null && input.ToLower() == "y")
+            {
+                return true;
+            }
+            if (input != null && input.ToLower() == "n")
+            {
+                return false;
+            }
+        }
     }
 }
 

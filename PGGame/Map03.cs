@@ -16,7 +16,7 @@ public class Map03 : BaseMap
                                                   #                              | |__[1]|____|    #
                                                   #         \---/                                  #
                                                   #          |o|                                   #
-                                                  #          | |                       🌳          #
+                                                  #          | |                       🌳 4        #
                                                   D         ==2==                                  #
                                                   #                                                #
                                                   #                          ._                    #
@@ -48,6 +48,12 @@ public class Map03 : BaseMap
         if (selection == '2')
         {
             Exercise05.RingBell();
+            SetPlayerStart();
+        }
+        
+        if (selection == '3')
+        {
+            Exercise06 exercise = new Exercise06();
             SetPlayerStart();
         }
     }
