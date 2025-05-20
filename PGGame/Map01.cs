@@ -14,7 +14,7 @@ public class Map01 : BaseMap
                                                   #                                                #
                                                   #                                                #
                                                   #                                                #
-                                                  #                        1                       D
+                                                  #                        1        2              D
                                                   #                                                #
                                                   #                                                #
                                                   #                                                #
@@ -41,6 +41,13 @@ public class Map01 : BaseMap
         if (selection == '1')
         {
             Exercise01.GetPlayerName();
+            playerStartX = Player.Instance.PlayerPositionX;
+            playerStartY = Player.Instance.PlayerPositionY;
+        }
+        if (selection == '2')
+        {
+            Exercise06 exercise = new Exercise06();
+            
             playerStartX = Player.Instance.PlayerPositionX;
             playerStartY = Player.Instance.PlayerPositionY;
         }

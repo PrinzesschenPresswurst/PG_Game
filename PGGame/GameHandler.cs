@@ -2,20 +2,20 @@
 
 public static class GameHandler
 {
-    private static readonly int _windowHeight = 50;
-    private static readonly int _windowWidth = 100;
+    private static readonly int WndowHeight = 50;
+    private static readonly int WindowWidth = 100;
     
     public static BaseMap Map01 { get; set; } = new Map01();
     public static BaseMap Map02 { get; set; } = new Map02();
     public static BaseMap Map03 { get; set; } = new Map03();
     private static BaseMap Map { get; set; } = Map01;
     
-    private static Player Player = Player.Instance;
+    private static readonly Player Player = Player.Instance;
 
     
     public static void StartGame()
     {
-        Console.SetWindowSize(_windowWidth, _windowHeight);
+        Console.SetWindowSize(WindowWidth, WndowHeight);
         WriteMap();
         MovePlayer();
     }
@@ -36,11 +36,11 @@ public static class GameHandler
         {
             HandleInput( y: -1);
         }
-        else if (input.Key == ConsoleKey.DownArrow && Player.PlayerPositionY + 1 < _windowHeight)
+        else if (input.Key == ConsoleKey.DownArrow && Player.PlayerPositionY + 1 < WndowHeight)
         {
             HandleInput( y: +1);
         }
-        else if (input.Key == ConsoleKey.RightArrow && Player.PlayerPositionX + 1 < _windowWidth)
+        else if (input.Key == ConsoleKey.RightArrow && Player.PlayerPositionX + 1 < WindowWidth)
         {
             HandleInput( x: +1);
         }
@@ -52,6 +52,8 @@ public static class GameHandler
     
     private static void HandleInput(int x = 0, int y = 0)
     {
+        if (Map.MapArray == null)
+            return;
         char targetCharacter = Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x];
         if (targetCharacter is '1' or '2' or '3' or '4')
         {
