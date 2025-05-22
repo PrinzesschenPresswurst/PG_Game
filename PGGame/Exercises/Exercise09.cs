@@ -22,6 +22,7 @@ public class Exercise09
         {
             _initialArray[i] = HelperFunctions.GetNumber();
         }
+        
     }
 
     private void Instruction()
@@ -36,7 +37,7 @@ public class Exercise09
                              5 - Leave
                              """;
         Console.WriteLine(instruction);
-        int choice = HelperFunctions.GetNumber(Minvalue: 1, maxValue: 5);
+        int choice = HelperFunctions.GetNumber(minvalue: 1, maxValue: 5);
         switch (choice)
         {
             case 1: 
@@ -60,6 +61,7 @@ public class Exercise09
                 break;
         }
     }
+    
     private void CopyArray()
     {
         HelperFunctions.FeedbackTimer();

@@ -46,8 +46,8 @@ public class Map01 : BaseMap
         }
         if (selection == '2')
         {
-            Exercise09 exercise = new Exercise09();
-            
+            Exercise11 exercise = new Exercise11();
+            exercise.RunGame();
             playerStartX = Player.Instance.PlayerPositionX;
             playerStartY = Player.Instance.PlayerPositionY;
         }

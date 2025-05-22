@@ -2,7 +2,7 @@
 
 public static class HelperFunctions
 {
-    public static int GetNumber(string question = "Give a number", int Minvalue = Int32.MinValue, int maxValue = int.MaxValue)
+    public static int GetNumber(string question = "Give a number", int minvalue = Int32.MinValue, int maxValue = int.MaxValue)
     {
         Console.WriteLine(question);
         
@@ -11,9 +11,9 @@ public static class HelperFunctions
             string? input = Console.ReadLine();
             if (input != null && int.TryParse(input, out int result))
             {
-                if (result >= Minvalue && result <= maxValue)
+                if (result >= minvalue && result <= maxValue)
                     return result;
-                Console.WriteLine($"{result} is not between {Minvalue} and {maxValue}.");
+                Console.WriteLine($"{result} is not between {minvalue} and {maxValue}.");
             }
             Console.WriteLine($"{input} is not a valid input.");
         }
