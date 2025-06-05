@@ -1,4 +1,6 @@
-﻿namespace PGGame;
+﻿using PGGame.Minesweeper;
+
+namespace PGGame;
 
 public class Map01 : BaseMap
 {
@@ -46,8 +48,8 @@ public class Map01 : BaseMap
         }
         if (selection == '2')
         {
-            Exercise14 exercise = new Exercise14();
-            exercise.RunGame();
+            MinesweeperGame game = new MinesweeperGame();
+            //g.RunGame();
             playerStartX = Player.Instance.PlayerPositionX;
             playerStartY = Player.Instance.PlayerPositionY;
         }
