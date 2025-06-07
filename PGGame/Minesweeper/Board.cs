@@ -80,47 +80,27 @@ public class Board
         foreach (var cell in GameBoard)
         {
             int count = 0;
-            if (cell.Column - 1 >= 0)
-            {
-                if (GameBoard[cell.Row, cell.Column - 1].IsMine)
-                    count++;
-            }
-            if (cell.Column + 1 < Columns)
-            {
-                if (GameBoard[cell.Row, cell.Column + 1].IsMine)
-                    count++; 
-            }
-            if (cell.Row - 1 >= 0)
-            {
-                if (GameBoard[cell.Row -1, cell.Column].IsMine)
-                    count++;
-            }
-            if (cell.Row + 1 < Rows)
-            {
-                if (GameBoard[cell.Row +1, cell.Column].IsMine)
-                    count++; 
-            }
             
-            if (cell.Row + 1 < Rows && cell.Column + 1 < Columns)
+            int[,] neighbors = new int[,]
             {
-                if (GameBoard[cell.Row +1, cell.Column+1].IsMine)
-                    count++; 
-            }
-            if (cell.Row - 1 >= 0 && cell.Column - 1 >= 0)
-            {
-                if (GameBoard[cell.Row -1, cell.Column-1].IsMine)
-                    count++; 
-            }
-            if (cell.Row + 1 < Rows && cell.Column - 1 >= 0)
-            {
-                if (GameBoard[cell.Row +1, cell.Column-1].IsMine)
-                    count++; 
-            }
+                {+1,0}, {0,+1}, {-1,0}, {0,-1}, 
+                {+1,+1}, {-1,-1}, {+1,-1}, {-1,+1}, 
+            };
             
-            if (cell.Row - 1  >= 0 && cell.Column + 1  < Columns)
+            for (int i = 0; i < neighbors.GetLength(0); i++)
             {
-                if (GameBoard[cell.Row -1, cell.Column+1].IsMine)
-                    count++; 
+                int neighborRow = neighbors[i, 0];
+                int neighborColumn = neighbors[i, 1];
+                int rowToCheck = cell.Row + neighborRow;
+                int columnToCheck = cell.Column + neighborColumn;
+                
+                if (rowToCheck < 0 || rowToCheck >= Rows)
+                    continue;
+                if (columnToCheck < 0 || columnToCheck >= Columns )
+                    continue;
+               
+                if (GameBoard[rowToCheck, columnToCheck].IsMine)
+                    count++;
             }
             
             cell.AdjacentMineCount = count;

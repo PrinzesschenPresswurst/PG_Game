@@ -20,11 +20,34 @@ public class PlayerInputHandler
             if (input != null && _regex.IsMatch(input))
             {
                 Console.WriteLine("Valid input.");
+                FilterResult(input);
             }
             else
             {
                 Console.WriteLine("Invalid input. Give a number and a letter.");
             }  
         }
+    }
+
+    public void FilterResult(string input)
+    {
+        input = input.ToUpper();
+         var matchesLetter = Regex.Matches(input, @"[A-Z]");
+        
+         foreach (Match match in matchesLetter)
+         {
+             string letter = match.ToString();
+             Console.WriteLine(letter);
+         }
+        
+         var matchesNumber = Regex.Matches(input, @"\d+");
+         foreach (Match match in matchesNumber)
+         {
+             if( Int32.TryParse(match.ToString(), out int result))
+             {
+                 int number = result;
+                 Console.WriteLine(number);
+             }
+         }
     }
 }
