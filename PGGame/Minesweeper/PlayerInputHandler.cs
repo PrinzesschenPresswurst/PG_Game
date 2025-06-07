@@ -9,9 +9,9 @@ public class PlayerInputHandler
     {
         int maxNumber = board.GameBoard.GetLength(0)-1;
         char maxLetter = (char)('a' + board.GameBoard.GetLength(1)-1);
-        _regex = new Regex ($@"^([a-{maxLetter}]\s*[0-{maxNumber}]|[0-{maxNumber}]\s*[a-{maxLetter}])$", RegexOptions.IgnoreCase);
+        _regex = new Regex ($@"^([a-{maxLetter}]\s*[1-{maxNumber+1}]|[1-{maxNumber+1}]\s*[a-{maxLetter}])$", RegexOptions.IgnoreCase);
     }
-    public void GetCellToUncover()
+    public (int row, int column) GetCellToUncover()
     {
         Console.WriteLine("Which cell do you want top uncover?");
         while (true)
@@ -19,35 +19,40 @@ public class PlayerInputHandler
             string? input = Console.ReadLine();
             if (input != null && _regex.IsMatch(input))
             {
-                Console.WriteLine("Valid input.");
-                FilterResult(input);
+                int column = GetColumn(input);
+                int row = GetRow(input);
+                return (row, column);
             }
-            else
-            {
-                Console.WriteLine("Invalid input. Give a number and a letter.");
-            }  
+            Console.WriteLine("Invalid input. Give a number and a letter.");
         }
     }
 
-    public void FilterResult(string input)
+    private int GetColumn(string input)
     {
+        int column = -1;
         input = input.ToUpper();
-         var matchesLetter = Regex.Matches(input, @"[A-Z]");
+        var matchesLetter = Regex.Matches(input, @"[A-Z]");
         
-         foreach (Match match in matchesLetter)
-         {
-             string letter = match.ToString();
-             Console.WriteLine(letter);
-         }
-        
-         var matchesNumber = Regex.Matches(input, @"\d+");
-         foreach (Match match in matchesNumber)
-         {
-             if( Int32.TryParse(match.ToString(), out int result))
-             {
-                 int number = result;
-                 Console.WriteLine(number);
-             }
-         }
+        foreach (Match match in matchesLetter)
+        {
+            char letter = match.ToString()[0];
+            int value = letter - 'A' + 1;
+            column = value - 1;
+        }
+        return column;
+    }
+    private int GetRow(string input)
+    {
+        int row = -1;
+        var matchesNumber = Regex.Matches(input, @"\d+");
+        foreach (Match match in matchesNumber)
+        {
+            if( Int32.TryParse(match.ToString(), out int result))
+            {
+                int number = result;
+                row = result - 1;
+            }
+        }
+        return row;
     }
 }

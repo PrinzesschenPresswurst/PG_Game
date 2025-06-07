@@ -89,22 +89,26 @@ public class Board
             
             for (int i = 0; i < neighbors.GetLength(0); i++)
             {
-                int neighborRow = neighbors[i, 0];
-                int neighborColumn = neighbors[i, 1];
-                int rowToCheck = cell.Row + neighborRow;
-                int columnToCheck = cell.Column + neighborColumn;
+                int rowToCheck = cell.Row + neighbors[i, 0];
+                int columnToCheck = cell.Column + neighbors[i, 1];
                 
-                if (rowToCheck < 0 || rowToCheck >= Rows)
+                if (CheckIfNeighborIsOnBoard(rowToCheck, columnToCheck) == false)
                     continue;
-                if (columnToCheck < 0 || columnToCheck >= Columns )
-                    continue;
-               
                 if (GameBoard[rowToCheck, columnToCheck].IsMine)
                     count++;
             }
-            
             cell.AdjacentMineCount = count;
         }
+    }
+
+    private bool CheckIfNeighborIsOnBoard(int rowToCheck, int columnToCheck)
+    {
+        if (rowToCheck < 0 || rowToCheck >= Rows)
+            return false;
+        if (columnToCheck < 0 || columnToCheck >= Columns )
+            return false;;
+        
+        return true;
     }
     
     public enum BoardSize

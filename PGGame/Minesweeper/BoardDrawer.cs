@@ -7,6 +7,7 @@ public class BoardDrawer
     
     public void DisplayBoard(Board board)
     {
+        Console.Clear();
         char topLetters = 'A';
         Console.Write("  ");
         for (int i = 0; i < board.GameBoard.GetLength(1); i++)
@@ -16,7 +17,7 @@ public class BoardDrawer
         }
         Console.WriteLine();
 
-        int sideNumbers = 0;
+        int sideNumbers = 1;
         for (int i = 0; i < board.GameBoard.GetLength(0); i++)
         {
             Console.Write($"{sideNumbers, 2} ");

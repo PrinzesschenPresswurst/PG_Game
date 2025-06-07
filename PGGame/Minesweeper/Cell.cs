@@ -10,7 +10,7 @@ public class Cell
 
     public Cell(int row, int column)
     {
-        IsCovered = false;
+        IsCovered = true;
         Row = row;
         Column = column;
     }
