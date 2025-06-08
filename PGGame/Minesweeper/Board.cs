@@ -3,9 +3,10 @@
 public class Board
 {
     public Cell[,] GameBoard { get; set; } 
-    private int Rows { get; set; }
-    private int Columns { get; set; }
-    private int MineAmount { get; set; }
+    public int Rows { get; set; }
+    public int Columns { get; set; }
+    public int MineAmount { get; set; }
+    public int TotalTilesToUncover { get; set; }
     
     public Board(int rows, int columns, int mineAmount)
     {
@@ -14,6 +15,7 @@ public class Board
         MineAmount = mineAmount;
         GameBoard = InitializeBoard();
         PlaceMines();
+        TotalTilesToUncover = (rows * columns) - mineAmount;
     }
 
     public Board (BoardSize size)
@@ -23,7 +25,7 @@ public class Board
             case BoardSize.Small:
                 Rows = 9;
                 Columns = 9;
-                MineAmount = 10;
+                MineAmount = 1;
                 break;
             case BoardSize.Medium:
                 Rows = 16;
@@ -39,6 +41,7 @@ public class Board
         GameBoard = InitializeBoard();
         PlaceMines();
         CountAdjacentMines();
+        TotalTilesToUncover = (Rows * Columns) - MineAmount;
     }
 
     private Cell[,] InitializeBoard()
@@ -79,36 +82,8 @@ public class Board
     {
         foreach (var cell in GameBoard)
         {
-            int count = 0;
-            
-            int[,] neighbors = new int[,]
-            {
-                {+1,0}, {0,+1}, {-1,0}, {0,-1}, 
-                {+1,+1}, {-1,-1}, {+1,-1}, {-1,+1}, 
-            };
-            
-            for (int i = 0; i < neighbors.GetLength(0); i++)
-            {
-                int rowToCheck = cell.Row + neighbors[i, 0];
-                int columnToCheck = cell.Column + neighbors[i, 1];
-                
-                if (CheckIfNeighborIsOnBoard(rowToCheck, columnToCheck) == false)
-                    continue;
-                if (GameBoard[rowToCheck, columnToCheck].IsMine)
-                    count++;
-            }
-            cell.AdjacentMineCount = count;
+           cell.CountAdjacentMines(this);
         }
-    }
-
-    private bool CheckIfNeighborIsOnBoard(int rowToCheck, int columnToCheck)
-    {
-        if (rowToCheck < 0 || rowToCheck >= Rows)
-            return false;
-        if (columnToCheck < 0 || columnToCheck >= Columns )
-            return false;;
-        
-        return true;
     }
     
     public enum BoardSize

@@ -5,6 +5,9 @@ public class MinesweeperGame
     private Board _board;
     private BoardDrawer _boardDrawer;
     private PlayerInputHandler _playerInputHandler;
+    private bool _gameLost = false;
+    private bool _gameWon = false;
+    
     public MinesweeperGame()
     {
         Console.Clear();
@@ -19,7 +22,7 @@ public class MinesweeperGame
     {
         _boardDrawer.DisplayBoard(_board);
         
-        while (true)
+        while (_gameWon == false && _gameLost == false)
         {
             (int row, int column) cellToUncover = _playerInputHandler.GetCellToUncover();
             HandleConsequence(cellToUncover);
@@ -34,13 +37,27 @@ public class MinesweeperGame
         }
         else if (_board.GameBoard[cell.row, cell.column].IsCovered)
         {
-            _board.GameBoard[cell.row, cell.column].Uncover();
+            _board.GameBoard[cell.row, cell.column].Uncover(_board);
             _boardDrawer.DisplayBoard(_board);
+            
+            if (CheckIfGameWon() == true)
+            {
+                Console.WriteLine("OMG You made it. Take a treat.");
+                _gameWon = true;
+            }
             
             if (_board.GameBoard[cell.row, cell.column].IsMine)
             {
-                Console.WriteLine("Oh no, a mine. Game over.");
+                Console.WriteLine("Oh no, a mine. Game over. You lose a life and no treasure for you.");
+                _gameLost = true;
             }
         }
+    }
+
+    private bool CheckIfGameWon()
+    {
+        if (_board.TotalTilesToUncover == 0)
+            return true;
+        return false;
     }
 }

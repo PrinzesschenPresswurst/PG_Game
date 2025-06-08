@@ -13,7 +13,7 @@ public class PlayerInputHandler
     }
     public (int row, int column) GetCellToUncover()
     {
-        Console.WriteLine("Which cell do you want top uncover?");
+        Console.WriteLine("\nWhich cell do you want to uncover?");
         while (true)
         {
             string? input = Console.ReadLine();
@@ -49,7 +49,6 @@ public class PlayerInputHandler
         {
             if( Int32.TryParse(match.ToString(), out int result))
             {
-                int number = result;
                 row = result - 1;
             }
         }
