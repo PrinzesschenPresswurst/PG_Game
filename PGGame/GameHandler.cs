@@ -52,9 +52,8 @@ public static class GameHandler
     
     private static void HandleInput(int x = 0, int y = 0)
     {
-        if (Map.MapArray == null)
-            return;
-        char targetCharacter = Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x];
+        int mapOffsetForHud = -1; //TODO fix this - this is nasty
+        char targetCharacter = Map.MapArray[Player.PlayerPositionY + y + mapOffsetForHud, Player.PlayerPositionX + x];
         if (targetCharacter is '1' or '2' or '3' or '4')
         {
             Map.Interact(targetCharacter);
@@ -69,9 +68,20 @@ public static class GameHandler
             return;
         }
 
+        if (targetCharacter == 'T')
+        {
+            Map.TreasureHunt();
+            if (Map.ActiveTreasureHunt._gameWon)
+            {
+                Map.MapArray[Player.PlayerPositionY + y + mapOffsetForHud, Player.PlayerPositionX + x] = ' ';
+            }
+            WriteMap();
+            return;
+        }
+
         if (targetCharacter == Map.PickupSign)
         {
-            Map.MapArray[Player.PlayerPositionY + y, Player.PlayerPositionX + x] = ' ';
+            Map.MapArray[Player.PlayerPositionY + y + mapOffsetForHud, Player.PlayerPositionX + x] = ' ';
             Map.Pickup();
         }
         
@@ -90,7 +100,7 @@ public static class GameHandler
         Player.PlayerPositionY += y;
         Player.PlayerPositionX += x;
     
-        Console.SetCursorPosition(Player.PlayerPositionX,Player.PlayerPositionY );
+        Console.SetCursorPosition(Player.PlayerPositionX,Player.PlayerPositionY);
         Console.Write(Player.PlayerLook); 
     }
 
@@ -99,8 +109,16 @@ public static class GameHandler
         Console.Clear();
         Console.Title = Map.MapTitle;
         Console.SetCursorPosition(0,0);
+        WriteHud();
+        Console.SetCursorPosition(0,1);
         Map.WriteMap();
         Console.WriteLine($"\n{Map.MapText}");
         SetPlayerPosition();
+    }
+    private static void WriteHud()
+    {
+        Console.Write($"Health: {Player.Instance.Health, -10} ");
+        Console.Write($"Coins: {Player.Instance.Coins, -10} ");
+        //Console.WriteLine();
     }
 }

@@ -6,6 +6,8 @@ public  class Player
     public int PlayerPositionX { get; set; } = 0;
     public int PlayerPositionY { get; set; } = 0;
     public string PlayerName { get; set; } = "default";
+    public int Coins { get; set; } = 0;
+    public int Health { get; set; } = 10;
 
     private static Player _instance = null;
     

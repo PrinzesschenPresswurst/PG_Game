@@ -5,13 +5,13 @@ public class MinesweeperGame
     private Board _board;
     private BoardDrawer _boardDrawer;
     private PlayerInputHandler _playerInputHandler;
-    private bool _gameLost = false;
-    private bool _gameWon = false;
+    public bool _gameLost { get; set; } = false;
+    public bool _gameWon { get; set; }= false;
     
-    public MinesweeperGame()
+    public MinesweeperGame(Board.BoardSize size)
     {
         Console.Clear();
-        _board = new Board(Board.BoardSize.Small);
+        _board = new Board(size);
         _boardDrawer = new BoardDrawer();
         _playerInputHandler = new PlayerInputHandler(_board);
         RunGame();

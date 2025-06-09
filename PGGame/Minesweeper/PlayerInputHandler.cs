@@ -9,13 +9,16 @@ public class PlayerInputHandler
     {
         int maxNumber = board.GameBoard.GetLength(0)-1;
         char maxLetter = (char)('a' + board.GameBoard.GetLength(1)-1);
-        _regex = new Regex ($@"^([a-{maxLetter}]\s*[1-{maxNumber+1}]|[1-{maxNumber+1}]\s*[a-{maxLetter}])$", RegexOptions.IgnoreCase);
+        string letterPattern = $"[a-{maxLetter}]";
+        string numberPattern = $@"(0*[1-9]|[1-9][0-9]?)"; // matches 1–99 without leading zeros
+        _regex = new Regex($@"^({letterPattern}\s*{numberPattern}|{numberPattern}\s*{letterPattern})$", RegexOptions.IgnoreCase);
     }
     public (int row, int column) GetCellToUncover()
     {
         Console.WriteLine("\nWhich cell do you want to uncover?");
         while (true)
         {
+            
             string? input = Console.ReadLine();
             if (input != null && _regex.IsMatch(input))
             {

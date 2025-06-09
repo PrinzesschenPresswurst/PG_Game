@@ -1,4 +1,6 @@
-﻿namespace PGGame;
+﻿using PGGame.Minesweeper;
+
+namespace PGGame;
 
 public class Map02 : BaseMap
 {
@@ -8,6 +10,7 @@ public class Map02 : BaseMap
     public override int playerStartX { get; set; } = 2;
     public override int playerStartY { get; set; } = 7;
     public override char PickupSign { get; set; } = 'o';
+    public override MinesweeperGame ActiveTreasureHunt { get; set; }
 
     public override string MapLook { get; set; }= """
                                                   ##################################################
@@ -24,7 +27,7 @@ public class Map02 : BaseMap
                                                   #                                                #
                                                   #           🌳                🌳                 #
                                                   #       🌳   o  🌳             o                 #
-                                                  #         🌳   🌳                      🌳o       #
+                                                  #        T🌳   🌳                      🌳o       #
                                                   #                                                #
                                                   ##################################################
                                                   """;
@@ -75,7 +78,12 @@ public class Map02 : BaseMap
             return GameHandler.Map03;
         }
         else return GameHandler.Map02;
-        
-        
+    }
+    public override void TreasureHunt()
+    {
+        MinesweeperGame game = new MinesweeperGame(Board.BoardSize.Medium);
+        ActiveTreasureHunt = game;
+        SetPlayerStart();
+        TreasureHuntDealConsequence(game, 15);
     }
 }

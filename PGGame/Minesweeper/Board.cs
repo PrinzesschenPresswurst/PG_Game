@@ -11,10 +11,15 @@ public class Board
     public Board(int rows, int columns, int mineAmount)
     {
         Rows = rows;
+        if (Rows > 99)
+            Rows = 99;
         Columns = columns;
+        if (Columns > 25)
+            Columns = 25;
         MineAmount = mineAmount;
         GameBoard = InitializeBoard();
         PlaceMines();
+        CountAdjacentMines();
         TotalTilesToUncover = (rows * columns) - mineAmount;
     }
 
@@ -33,9 +38,9 @@ public class Board
                 MineAmount = 40;
                 break;
             case BoardSize.Large:
-                Rows = 60;
-                Columns = 30;
-                MineAmount = 99;
+                Rows = 25;
+                Columns = 25;
+                MineAmount = 66;
                 break;
         } 
         GameBoard = InitializeBoard();

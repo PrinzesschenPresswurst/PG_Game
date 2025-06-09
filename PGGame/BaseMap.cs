@@ -1,4 +1,6 @@
-﻿namespace PGGame;
+﻿using PGGame.Minesweeper;
+
+namespace PGGame;
 
 public class BaseMap
 {
@@ -10,6 +12,7 @@ public class BaseMap
     public virtual int playerStartY { get; set; } = 1;
 
     public virtual char PickupSign { get; set; }
+    public virtual MinesweeperGame ActiveTreasureHunt { get; set; }
     
     public virtual string MapText { get; set; } = "Default base map text ";
     public virtual string MapTitle { get; set; } = "Default Title ";
@@ -23,12 +26,31 @@ public class BaseMap
         
     }
     
+    public virtual void TreasureHunt()
+    {
+        
+    }
+
+    protected void TreasureHuntDealConsequence(MinesweeperGame game, int reward)
+    {
+        if (game._gameLost)
+        {
+            Player.Instance.Health -= 1;
+        }
+
+        if (game._gameWon)
+        {
+            Player.Instance.Coins += reward;
+            MapArray[Player.Instance.PlayerPositionX, Player.Instance.PlayerPositionY] = ' ';
+        }
+    }
+    
     public virtual BaseMap MapSwitch(char exit)
     {
         return new Map01();
     }
 
-    public virtual void SetPlayerStart()
+    protected void SetPlayerStart()
     {
         playerStartX = Player.Instance.PlayerPositionX;
         playerStartY = Player.Instance.PlayerPositionY;
@@ -69,9 +91,7 @@ public class BaseMap
                     Console.Write('E'); 
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                    
                 else Console.Write(MapArray[i,j]);
-                
             }
             Console.WriteLine();
         }
