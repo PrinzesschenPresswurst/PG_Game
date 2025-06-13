@@ -1,4 +1,6 @@
 ﻿using PGGame.Minesweeper;
+using PGGame.RPS;
+using PGGame.TicTacToe;
 
 namespace PGGame;
 
@@ -10,6 +12,7 @@ public class Map01 : BaseMap
     public override int playerStartX { get; set; } = 25; 
     public override int playerStartY { get; set; } = 8; 
     public override MinesweeperGame ActiveTreasureHunt { get; set; }
+    public override TicTacToeGame ActiveBarrier { get; set; }
     
     public override string MapLook { get; set; }= """
                                                   ##################################################
@@ -17,7 +20,7 @@ public class Map01 : BaseMap
                                                   #       T                                        #
                                                   #                                                #
                                                   #                                                #
-                                                  #                        1        2              D
+                                                  #                        1        2             BD
                                                   #                                                #
                                                   #                                                #
                                                   #                                                #
@@ -49,7 +52,14 @@ public class Map01 : BaseMap
         }
         if (selection == '2')
         {
-            //testcase here
+            RpsGame rpsGame = new RpsGame();
+            playerStartX = Player.Instance.PlayerPositionX;
+            playerStartY = Player.Instance.PlayerPositionY;
+        }
+        if (selection == 'B')
+        {
+            TicTacToeGame game = new TicTacToeGame();
+            ActiveBarrier = game;
             playerStartX = Player.Instance.PlayerPositionX;
             playerStartY = Player.Instance.PlayerPositionY;
         }

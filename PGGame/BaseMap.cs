@@ -1,4 +1,5 @@
 ﻿using PGGame.Minesweeper;
+using PGGame.TicTacToe;
 
 namespace PGGame;
 
@@ -13,6 +14,7 @@ public class BaseMap
 
     public virtual char PickupSign { get; set; }
     public virtual MinesweeperGame ActiveTreasureHunt { get; set; }
+    public virtual TicTacToeGame ActiveBarrier { get; set; }
     
     public virtual string MapText { get; set; } = "Default base map text ";
     public virtual string MapTitle { get; set; } = "Default Title ";

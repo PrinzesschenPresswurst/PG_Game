@@ -1,4 +1,6 @@
-﻿namespace PGGame;
+﻿using PGGame.TicTacToe;
+
+namespace PGGame;
 
 public static class GameHandler
 {
@@ -83,6 +85,15 @@ public static class GameHandler
         {
             Map.MapArray[Player.PlayerPositionY + y + mapOffsetForHud, Player.PlayerPositionX + x] = ' ';
             Map.Pickup();
+        }
+        
+        if (targetCharacter == 'B')
+        {
+            Map.Interact(targetCharacter);
+            if (Map.ActiveBarrier.CurrentEndResult == TicTacToeGame.EndResult.PlayerWon)
+                Map.MapArray[Player.PlayerPositionY + y + mapOffsetForHud, Player.PlayerPositionX + x] = ' ';
+            WriteMap();
+            return;
         }
         
         else if (targetCharacter != ' ')

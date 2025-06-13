@@ -46,4 +46,9 @@ public static class HelperFunctions
             Console.Write(icon + " ");
         }
     }
+
+    public static int GetRandomNumber(int min, int max)
+    {
+        return Random.Shared.Next(min, max + 1);
+    }
 }
