@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PGGame")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e2d2624ad6ca162d45618b0c2a44c735c8800118")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+859f68dcf0b2777b6eae1b8ef5cad2ad54b7e0ad")]
 [assembly: System.Reflection.AssemblyProductAttribute("PGGame")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PGGame")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

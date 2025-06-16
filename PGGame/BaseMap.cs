@@ -28,19 +28,18 @@ public class BaseMap
         
     }
     
-    public virtual void TreasureHunt()
+    public void TreasureHunt(Board.BoardSize size, int reward)
     {
+        MinesweeperGame game = new MinesweeperGame(size);
+        ActiveTreasureHunt = game;
+        SetPlayerStart();
         
-    }
-
-    protected void TreasureHuntDealConsequence(MinesweeperGame game, int reward)
-    {
         if (game._gameLost)
         {
             Player.Instance.Health -= 1;
         }
 
-        if (game._gameWon)
+        else if (game._gameWon)
         {
             Player.Instance.Coins += reward;
             MapArray[Player.Instance.PlayerPositionX, Player.Instance.PlayerPositionY] = ' ';
@@ -52,7 +51,7 @@ public class BaseMap
         return new Map01();
     }
 
-    protected void SetPlayerStart()
+    public void SetPlayerStart()
     {
         playerStartX = Player.Instance.PlayerPositionX;
         playerStartY = Player.Instance.PlayerPositionY;
@@ -91,6 +90,12 @@ public class BaseMap
                 { 
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write('E'); 
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else if (MapArray[i, j] == 'S')
+                { 
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write('\u2694'); 
                     Console.ForegroundColor = ConsoleColor.White;
                 }
                 else Console.Write(MapArray[i,j]);

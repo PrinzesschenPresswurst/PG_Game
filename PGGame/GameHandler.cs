@@ -1,4 +1,5 @@
-﻿using PGGame.TicTacToe;
+﻿using PGGame.RPS;
+using PGGame.TicTacToe;
 
 namespace PGGame;
 
@@ -32,7 +33,13 @@ public static class GameHandler
     
     public static void GetDirection() 
     {
-        ConsoleKeyInfo input = Console.ReadKey();
+        ConsoleKeyInfo input = Console.ReadKey(true);
+
+        if (input.Key == ConsoleKey.I)
+        {
+            Player.Instance.Inventory.DisplayInventory();
+            WriteMap();
+        }
         
         if (input.Key == ConsoleKey.UpArrow && Player.PlayerPositionY > 0)
         {
@@ -70,9 +77,22 @@ public static class GameHandler
             return;
         }
 
+        if (targetCharacter == 'S')
+        {
+            RpsGame rpsGame = new RpsGame();
+            Map.SetPlayerStart();
+            if (rpsGame.PlayerWon)
+                Map.MapArray[Player.PlayerPositionY + y + mapOffsetForHud, Player.PlayerPositionX + x] = ' ';
+            else if (!rpsGame.PlayerWon)
+                Player.Instance.Health--;
+            WriteMap();
+            return;
+        }
+
         if (targetCharacter == 'T')
         {
-            Map.TreasureHunt();
+            Map.Interact(targetCharacter);
+            
             if (Map.ActiveTreasureHunt._gameWon)
             {
                 Map.MapArray[Player.PlayerPositionY + y + mapOffsetForHud, Player.PlayerPositionX + x] = ' ';

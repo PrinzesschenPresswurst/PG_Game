@@ -21,7 +21,7 @@ public class Map01 : BaseMap
                                                   #                                                #
                                                   #                                                #
                                                   #                        1        2             BD
-                                                  #                                                #
+                                                  #        S                                       #
                                                   #                                                #
                                                   #                                                #
                                                   #      ~~~~~~         ~~~~~~         ~~~~~~      #
@@ -37,8 +37,7 @@ public class Map01 : BaseMap
 
     public override BaseMap MapSwitch(char exit)
     {
-        playerStartX = Player.Instance.PlayerPositionX;
-        playerStartY = Player.Instance.PlayerPositionY;
+        SetPlayerStart();
         return GameHandler.Map02;
     }
     
@@ -47,29 +46,20 @@ public class Map01 : BaseMap
         if (selection == '1')
         {
             Exercise01.GetPlayerName();
-            playerStartX = Player.Instance.PlayerPositionX;
-            playerStartY = Player.Instance.PlayerPositionY;
+            SetPlayerStart();
         }
         if (selection == '2')
         {
             RpsGame rpsGame = new RpsGame();
-            playerStartX = Player.Instance.PlayerPositionX;
-            playerStartY = Player.Instance.PlayerPositionY;
+            SetPlayerStart();
         }
         if (selection == 'B')
         {
             TicTacToeGame game = new TicTacToeGame();
             ActiveBarrier = game;
-            playerStartX = Player.Instance.PlayerPositionX;
-            playerStartY = Player.Instance.PlayerPositionY;
+            SetPlayerStart();
         }
-    }
-
-    public override void TreasureHunt() //TODO probably can put this in basemap and just call with size?
-    {
-        MinesweeperGame game = new MinesweeperGame(Board.BoardSize.Small);
-        ActiveTreasureHunt = game;
-        SetPlayerStart();
-        TreasureHuntDealConsequence(game, 5);
+        if (selection == 'T')
+            TreasureHunt(Board.BoardSize.Small, 5);
     }
 }

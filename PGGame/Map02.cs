@@ -57,6 +57,8 @@ public class Map02 : BaseMap
             Exercise03.DominionOfKings();
             SetPlayerStart();
         }
+        if (selection == 'T')
+            TreasureHunt(Board.BoardSize.Medium, 15);
         
     }
 
@@ -78,12 +80,5 @@ public class Map02 : BaseMap
             return GameHandler.Map03;
         }
         else return GameHandler.Map02;
-    }
-    public override void TreasureHunt()
-    {
-        MinesweeperGame game = new MinesweeperGame(Board.BoardSize.Medium);
-        ActiveTreasureHunt = game;
-        SetPlayerStart();
-        TreasureHuntDealConsequence(game, 15);
     }
 }

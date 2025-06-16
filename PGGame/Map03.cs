@@ -54,18 +54,13 @@ public class Map03 : BaseMap
             SetPlayerStart();
         }
         
-        if (selection == '3')
+        else if (selection == '3')
         {
             Exercise06 exercise = new Exercise06();
             SetPlayerStart();
         }
-    }
-    public override void TreasureHunt()
-    {
-        MinesweeperGame game = new MinesweeperGame(Board.BoardSize.Large);
-        ActiveTreasureHunt = game;
-        SetPlayerStart();
-        TreasureHuntDealConsequence(game, 50);
+        else if (selection == 'T')
+            TreasureHunt(Board.BoardSize.Large, 50);
     }
 }
 
