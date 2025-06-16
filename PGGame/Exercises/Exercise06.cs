@@ -2,7 +2,7 @@
 
 public class Exercise06
 {
-    private List<Item>? _inventory = new List<Item>();
+    private List<ItemExercise6>? _inventory = new List<ItemExercise6>();
     private bool discountActive = false;
 
     public Exercise06()
@@ -28,11 +28,11 @@ public class Exercise06
 
     private void CreateAllItems()
     {
-        Item torch = new Item("Torches", 15);
-        Item rope = new Item("Ropes", 25);
-        Item gear = new Item("Climbing Gear", 55);
-        Item armor = new Item("Armor", 500);
-        Item potion = new Item("Potion", 5);
+        ItemExercise6 torch = new ItemExercise6("Torches", 15);
+        ItemExercise6 rope = new ItemExercise6("Ropes", 25);
+        ItemExercise6 gear = new ItemExercise6("Climbing Gear", 55);
+        ItemExercise6 armor = new ItemExercise6("Armor", 500);
+        ItemExercise6 potion = new ItemExercise6("Potion", 5);
 
         _inventory = [torch, rope, gear, armor, potion];
     }
@@ -66,15 +66,15 @@ public class Exercise06
     {
         if (_inventory == null)
             return;
-        Item item = (number) switch
+        ItemExercise6 itemExercise6 = (number) switch
         {
-            1 => _inventory[1],
-            2 => _inventory[2],
-            3 => _inventory[3],
-            4 => _inventory[4],
-            5 => _inventory[5],
+            1 => _inventory[0],
+            2 => _inventory[1],
+            3 => _inventory[2],
+            4 => _inventory[3],
+            5 => _inventory[4],
         };
-        Console.WriteLine($"{item.Name} costs {(discountActive? (item.Price/2) : item.Price)}.");
+        Console.WriteLine($"{itemExercise6.Name} costs {(discountActive? (itemExercise6.Price/2) : itemExercise6.Price)}.");
     }
     
     private bool PlayAgain()
@@ -95,14 +95,15 @@ public class Exercise06
     }
 }
 
-public struct Item
+
+public record struct ItemExercise6
 {
     public string Name { get; set; }
     public int Price { get; set; }
 
-    public Item(string name, int price)
+    public ItemExercise6(string name, int price)
     {
         Name = name;
         Price = price;
     }
-}
+} 
